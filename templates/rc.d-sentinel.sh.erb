@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# $FreeBSD: head/databases/redis/files/redis.in 348126 2014-03-13 21:13:39Z mandree $
+#
+
+# PROVIDE: sentinel
+# REQUIRE: LOGIN
+# BEFORE:  securelevel redis
+# KEYWORD: shutdown
+
+# Add the following line to /etc/rc.conf to enable `sentinel':
+#
+#sentinel_enable="YES"
+#
+
+. /etc/rc.subr
+
+name="sentinel"
+rcvar=sentinel_enable
+
+extra_commands="reload"
+
+command="/usr/local/bin/redis-server"
+pidfile="/var/run/redis/$name.pid"
+
+# read configuration and set defaults
+load_rc_config "$name"
+: ${sentinel_enable="NO"}
+: ${sentinel_user="redis"}
+: ${sentinel_config="/usr/local/etc/$name.conf"}
+
+command_args="${sentinel_config} --sentinel"
+required_files="${sentinel_config}"
+
+run_rc_command "$1"

@@ -1,0 +1,19 @@
+sentinel monitor <%= @name %> <%= @masterip %> <%= @masterport %> <%= @quorumsize %>
+<% if @masterauth -%>
+sentinel auth-pass <%= @name %> <%= @masterauth %>
+<% end -%>
+<% if @down_after_milliseconds -%>
+sentinel down-after-milliseconds <%= @name %> <%= @down_after_milliseconds %>
+<% end -%>
+<% if @parallel_syncs -%>
+sentinel parallel-syncs <%= @name %> <%= @parallel_syncs %>
+<% end -%>
+<% if @failover_timeout -%>
+sentinel failover-timeout <%= @name %> <%= @failover_timeout %>
+<% end -%>
+<% if @notification_script -%>
+sentinel notification-script <%= @name %> <%= @notification_script %>
+<% end -%>
+<% if @reconfig_script -%>
+sentinel client-reconfig-script <%= @name %> <%= @reconfig_script %>
+<% end -%>
