@@ -20,14 +20,14 @@ rcvar=sentinel_enable
 
 extra_commands="reload"
 
-command="/usr/local/bin/redis-server"
-pidfile="/var/run/redis/$name.pid"
+command="<%= @sentinel_redis %>"
+pidfile="<%= @sentinel_pidfile %>"
 
 # read configuration and set defaults
 load_rc_config "$name"
 : ${sentinel_enable="NO"}
 : ${sentinel_user="redis"}
-: ${sentinel_config="/usr/local/etc/$name.conf"}
+: ${sentinel_config="<%= @sentinel_conf %>"}
 
 command_args="${sentinel_config} --sentinel"
 required_files="${sentinel_config}"

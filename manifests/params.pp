@@ -92,6 +92,7 @@ class redis::params {
       $logfile          = '/var/log/redis/redis.log'
       $dbdir            = '/var/db/redis/'
       $shell            = '/usr/sbin/nologin'
+      $binary           = '/usr/local/bin/redis-server'
 
       $sentinel_rc      = '/usr/local/etc/rc.d/sentinel'
       $sentinel_rc_erb  = 'redis/rc.d-sentinel.sh.erb'
@@ -107,6 +108,7 @@ class redis::params {
       $logfile          = '/var/log/redis/redis-server.log'
       $dbdir            = '/var/lib/redis/'
       $shell            = '/bin/false'
+      $binary           = '/usr/bin/redis-server'
 
       $sentinel_rc      = false
       $sentinel_pidfile = '/var/run/redis/redis-sentinel.pid'
