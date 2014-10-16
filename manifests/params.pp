@@ -45,6 +45,7 @@ class redis::params {
   $lua_time_limit                    = 5000
   $slowlog_log_slower_than           = 10000
   $slowlog_max_len                   = 128
+  $latency_monitor_threshold         = 0
   $notify_keyspace_events            = ''
   $hash_max_ziplist_entries          = 512
   $hash_max_ziplist_value            = 64
@@ -74,12 +75,14 @@ class redis::params {
 
   case $::operatingsystem {
     Ubuntu: {
-      $tcp_backlog_supported = false
-      $hyperloglog_supported = false
+      $tcp_backlog_supported     = false
+      $latency_monitor_supported = false
+      $hyperloglog_supported     = false
     }
     default: {
-      $tcp_backlog_supported = true
-      $hyperloglog_supported = true
+      $tcp_backlog_supported     = true
+      $latency_monitor_supported = true
+      $hyperloglog_supported     = true
     }
   }
 

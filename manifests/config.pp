@@ -62,6 +62,7 @@ class redis::config {
   $lua_time_limit                    = $::redis::lua_time_limit
   $slowlog_log_slower_than           = $::redis::slowlog_log_slower_than
   $slowlog_max_len                   = $::redis::slowlog_max_len
+  $latency_monitor_threshold         = $::redis::latency_monitor_threshold
   $notify_keyspace_events            = $::redis::notify_keyspace_events
   $hash_max_ziplist_entries          = $::redis::hash_max_ziplist_entries
   $hash_max_ziplist_value            = $::redis::hash_max_ziplist_value
@@ -78,8 +79,9 @@ class redis::config {
   $hz                                = $::redis::hz
   $aof_rewrite_incremental_fsync     = $::redis::aof_rewrite_incremental_fsync
 
-  $tcp_backlog_supported = $::redis::params::tcp_backlog_supported
-  $hyperloglog_supported = $::redis::params::hyperloglog_supported
+  $tcp_backlog_supported     = $::redis::params::tcp_backlog_supported
+  $latency_monitor_supported = $::redis::params::latency_monitor_supported
+  $hyperloglog_supported     = $::redis::params::hyperloglog_supported
 
   user { $::redis::user:
     ensure  => $::redis::ensure,

@@ -46,6 +46,7 @@ class redis (
   $lua_time_limit                    = $::redis::params::lua_time_limit,
   $slowlog_log_slower_than           = $::redis::params::slowlog_log_slower_than,
   $slowlog_max_len                   = $::redis::params::slowlog_max_len,
+  $latency_monitor_threshold         = $::redis::params::latency_monitor_threshold,
   $notify_keyspace_events            = $::redis::params::notify_keyspace_events,
   $hash_max_ziplist_entries          = $::redis::params::hash_max_ziplist_entries,
   $hash_max_ziplist_value            = $::redis::params::hash_max_ziplist_value,
