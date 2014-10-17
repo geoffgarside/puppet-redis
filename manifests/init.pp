@@ -65,6 +65,12 @@ class redis (
   $user                              = $::redis::params::user,
   $group                             = $::redis::params::group,
 ) inherits redis::params {
+
+  $file_ensure = $ensure ? {
+    'absent' => 'absent',
+    default  => 'file',
+  }
+
   class { '::redis::install': } ->
   class { '::redis::config': } ->
   class { '::redis::service': } ->

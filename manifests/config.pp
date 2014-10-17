@@ -1,15 +1,6 @@
 class redis::config {
   require stdlib
 
-  case $::redis::ensure {
-    'absent', absent: {
-      $file_ensure = 'absent'
-    }
-    default: {
-      $file_ensure = 'file'
-    }
-  }
-
   if ! has_ip_address($::redis::slaveof_ip) {
     $slaveof = "${::redis::slaveof_ip} ${::redis::slaveof_port}"
   } else {
@@ -98,7 +89,7 @@ class redis::config {
   }
 
   file { $::redis::params::redis_conf:
-    ensure  => $file_ensure,
+    ensure  => $::redis::file_ensure,
     content => template('redis/redis.conf.erb'),
     mode    => '0644',
     owner   => 'root',
