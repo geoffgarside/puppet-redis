@@ -22,7 +22,7 @@ class redis::config {
   $rename_command                    = $::redis::rename_command
   $tcp_backlog                       = $::redis::tcp_backlog
   $tcp_keepalive                     = $::redis::tcp_keepalive
-  $loglevel                          = $::redis::loglevel
+  $log_level                         = $::redis::log_level
   $syslog                            = $::redis::syslog
   $syslog_ident                      = $::redis::syslog_ident
   $syslog_facility                   = $::redis::syslog_facility
