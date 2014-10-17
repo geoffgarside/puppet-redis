@@ -62,11 +62,17 @@ class redis::params {
   $hz                                = 10
   $aof_rewrite_incremental_fsync     = yes
 
-  $sentinel_port          = 26379
-  $sentinel_announce_ip   = undef
-  $sentinel_announce_port = undef
-  $sentinel_dir           = '/tmp'
-  $monitor                = {}
+  $sentinel_port                    = 26379
+  $sentinel_announce_ip             = undef
+  $sentinel_announce_port           = undef
+  $sentinel_dir                     = '/tmp'
+  $monitor                          = {}
+  $sentinel_quorumsize              = 2
+  $sentinel_down_after_milliseconds = 30000
+  $sentinel_parallel_syncs          = 1
+  $sentinel_failover_timeout        = 180000
+  $sentinel_notification_script     = undef
+  $sentinel_reconfig_script         = undef
 
   $user  = 'redis'
   $group = 'redis'
