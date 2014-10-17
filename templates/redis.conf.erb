@@ -589,7 +589,7 @@ slowlog-log-slower-than <%= @slowlog_log_slower_than %>
 # You can reclaim memory used by the slow log with SLOWLOG RESET.
 slowlog-max-len <%= @slowlog_max_len %>
 
-<% if @latency_monitor_supported %->
+<% if @latency_monitor_supported -%>
 ################################ LATENCY MONITOR ##############################
 
 # The Redis latency monitoring subsystem samples different operations
