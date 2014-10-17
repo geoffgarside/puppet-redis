@@ -95,7 +95,7 @@ class redis::config {
     owner   => 'root',
     group   => '0',
   }
-  
+
   $piddir     = dirname($pidfile)
   $logdir     = dirname($logfile)
   $dir_ensure = $redis::ensure ? {
@@ -111,14 +111,22 @@ class redis::config {
       group  => $::redis::group,
     }
   }
-  
+
   if $logdir != "/var/log" {
     file { $logdir:
       ensure => $dir_ensure,
       mode   => '0755',
       owner  => $::redis::user,
       group  => $::redis::group,
+      before => File[$logfile],
     }
+  }
+
+  file { $logfile:
+    ensure => $::redis::file_ensure,
+    mode   => '0660',
+    owner  => $::redis::user,
+    group  => $::redis::group,
   }
 
   case $::operatingsystem {
