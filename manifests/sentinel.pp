@@ -23,7 +23,6 @@ class redis::sentinel (
 
   require redis
 
-  $pidfile = $::redis::params::sentinel_pidfile
   $file_ensure = $ensure ? {
     'absent' => 'absent',
     default  => 'file',
