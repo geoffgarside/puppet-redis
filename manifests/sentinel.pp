@@ -12,7 +12,7 @@
 class redis::sentinel (
   $ensure        = 'present',
   $port          = $::redis::params::sentinel_port,
-  $loglevel      = $::redis::params::loglevel,
+  $log_level     = $::redis::params::log_level,
   $announce_ip   = $::redis::params::sentinel_announce_ip,
   $announce_port = $::redis::params::sentinel_announce_port,
   $dir           = $::redis::params::sentinel_dir,

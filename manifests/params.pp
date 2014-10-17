@@ -12,7 +12,7 @@ class redis::params {
   $rename_command                    = {}
   $tcp_backlog                       = 511
   $tcp_keepalive                     = 0
-  $loglevel                          = 'notice'
+  $log_level                         = 'notice'
   $syslog                            = false
   $syslog_ident                      = 'redis'
   $syslog_facility                   = 'local0'
