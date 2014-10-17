@@ -4,7 +4,7 @@ class redis::sentinel::config {
   $pidfile       = $::redis::params::sentinel_pidfile
   $logfile       = $::redis::params::sentinel_logfile
 
-  $loglevel      = $::redis::sentinel::loglevel
+  $log_level     = $::redis::sentinel::log_level
   $port          = $::redis::sentinel::port
   $announce_ip   = $::redis::sentinel::announce_ip
   $announce_port = $::redis::sentinel::announce_port

@@ -13,7 +13,7 @@ class redis (
   $rename_command                    = $::redis::params::rename_command,
   $tcp_backlog                       = $::redis::params::tcp_backlog,
   $tcp_keepalive                     = $::redis::params::tcp_keepalive,
-  $loglevel                          = $::redis::params::loglevel,
+  $log_level                         = $::redis::params::log_level,
   $syslog                            = $::redis::params::syslog,
   $syslog_ident                      = $::redis::params::syslog_ident,
   $syslog_facility                   = $::redis::params::syslog_facility,
