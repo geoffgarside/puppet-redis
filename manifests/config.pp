@@ -95,6 +95,31 @@ class redis::config {
     owner   => 'root',
     group   => '0',
   }
+  
+  $piddir     = dirname($pidfile)
+  $logdir     = dirname($logfile)
+  $dir_ensure = $redis::ensure ? {
+    'absent'  => 'absent',
+    default   => 'directory',
+  }
+
+  if $piddir != "/var/run" {
+    file { $piddir:
+      ensure => $dir_ensure,
+      mode   => '0755',
+      owner  => $::redis::user,
+      group  => $::redis::group,
+    }
+  }
+  
+  if $logdir != "/var/log" {
+    file { $logdir:
+      ensure => $dir_ensure,
+      mode   => '0755',
+      owner  => $::redis::user,
+      group  => $::redis::group,
+    }
+  }
 
   case $::operatingsystem {
     'Ubuntu': {
