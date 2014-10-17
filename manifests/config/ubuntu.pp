@@ -1,9 +1,9 @@
 class redis::config::ubuntu {
   $ulimit = 10032 # TODO: Move to init.pp, needs to support other platforms though
 
-  file { '/etc/defaults/redis-server':
+  file { '/etc/default/redis-server':
     ensure  => $::redis::file_ensure,
-    content => template('redis/defaults_redis-server.erb'),
+    content => template('redis/default_redis-server.erb'),
     mode    => '0644',
     owner   => 'root',
     group   => '0',
