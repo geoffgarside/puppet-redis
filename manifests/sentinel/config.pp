@@ -35,4 +35,43 @@ class redis::sentinel::config {
     content => template('redis/sentinel.conf.local.erb'),
     order   => '01',
   }
+
+  $piddir     = dirname($pidfile)
+  $logdir     = dirname($logfile)
+  $dir_ensure = $redis::ensure ? {
+    'absent'  => 'absent',
+    default   => 'directory',
+  }
+
+  if !defined_with_params(File[$home], {'ensure' => $dir_ensure}) {
+
+  if $piddir != "/var/run" and !defined_with_params(File[$piddir], {'ensure' => $dir_ensure}) {
+    file { $piddir:
+      ensure => $dir_ensure,
+      mode   => '0755',
+      owner  => $::redis::user,
+      group  => $::redis::group,
+    }
+  }
+
+  if $logdir != "/var/log" {
+    if !defined_with_params(File[$logdir], {'ensure' => $dir_ensure}) {
+      file { $logdir:
+        ensure => $dir_ensure,
+        mode   => '0755',
+        owner  => $::redis::user,
+        group  => $::redis::group,
+      }
+    }
+
+    File[$logdir] -> File[$logfile]
+  }
+
+  file { $logfile:
+    ensure => $::redis::file_ensure,
+    mode   => '0660',
+    owner  => $::redis::user,
+    group  => $::redis::group,
+  }
+
 }
