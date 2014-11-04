@@ -21,6 +21,7 @@ class redis (
   $rdbcompression                    = $::redis::params::rdbcompression,
   $rdbchecksum                       = $::redis::params::rdbchecksum,
   $dbfilename                        = $::redis::params::dbfilename,
+  $dbdir                             = $::redis::params::dbdir,
   $slaveof_ip                        = $::redis::params::slaveof_ip,
   $slaveof_port                      = $::redis::params::slaveof_port,
   $slave_serve_stale_data            = $::redis::params::slave_serve_stale_data,

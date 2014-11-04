@@ -7,7 +7,6 @@ class redis::config {
     $slaveof = undef
   }
 
-  $dbdir                             = $::redis::params::dbdir
   $pidfile                           = $::redis::params::pidfile
   $logfile                           = $::redis::params::logfile
 
@@ -30,6 +29,7 @@ class redis::config {
   $rdbcompression                    = $::redis::rdbcompression
   $rdbchecksum                       = $::redis::rdbchecksum
   $dbfilename                        = $::redis::dbfilename
+  $dbdir                             = $::redis::dbdir
   $slave_serve_stale_data            = $::redis::slave_serve_stale_data
   $slave_read_only                   = $::redis::slave_read_only
   $repl_ping_slave_period            = $::redis::repl_ping_slave_period
