@@ -77,15 +77,13 @@ class redis::config {
   user { $::redis::user:
     ensure  => $::redis::ensure,
     comment => 'redis server',
-    gid     => $::redis::params::gid,
+    gid     => $::redis::group,
     home    => $::redis::dbdir,
     shell   => $::redis::params::shell,
-    uid     => $::redis::params::uid,
   }
 
   group { $::redis::group:
     ensure => $::redis::ensure,
-    gid    => $::redis::params::gid,
   }
 
   file { $::redis::params::redis_conf:

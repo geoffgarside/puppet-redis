@@ -76,8 +76,6 @@ class redis::params {
 
   $user  = 'redis'
   $group = 'redis'
-  $uid   = 535
-  $gid   = 535
 
   case $::operatingsystem {
     Ubuntu: {
