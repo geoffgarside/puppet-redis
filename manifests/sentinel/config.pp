@@ -1,5 +1,6 @@
 class redis::sentinel::config {
   require concat
+  require stdlib
 
   $pidfile       = $::redis::params::sentinel_pidfile
   $logfile       = $::redis::params::sentinel_logfile
@@ -43,7 +44,14 @@ class redis::sentinel::config {
     default   => 'directory',
   }
 
-  if !defined_with_params(File[$home], {'ensure' => $dir_ensure}) {
+  if $dir != "/tmp" and !defined_with_params(File[$dir], {'ensure' => $dir_ensure}) {
+    file { $dir:
+      ensure => $dir_ensure,
+      mode   => '0755',
+      owner  => $::redis::user,
+      group  => $::redis::group,
+    }
+  }
 
   if $piddir != "/var/run" and !defined_with_params(File[$piddir], {'ensure' => $dir_ensure}) {
     file { $piddir:
