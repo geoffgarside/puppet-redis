@@ -1,5 +1,5 @@
 define redis::sentinel::monitor (
-  $name,
+  $monitor                 = $name,
   $masterip,
   $masterport              = $::redis::port,
   $masterauth              = $::redis::auth,
@@ -10,9 +10,7 @@ define redis::sentinel::monitor (
   $notification_script     = $::redis::params::sentinel_notification_script,
   $reconfig_script         = $::redis::params::sentinel_reconfig_script,
 ) {
-  require concat
-
-  concat::fragment { "sentinel-monitor-${name}":
+  concat::fragment { "sentinel-monitor-${monitor}":
     content => template('redis/sentinel-monitor.conf.erb'),
     order   => '10',
   }
