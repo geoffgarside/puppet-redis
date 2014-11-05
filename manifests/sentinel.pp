@@ -28,6 +28,7 @@ class redis::sentinel (
     default  => 'file',
   }
 
+  Class['redis']->
   class { '::redis::sentinel::install': }->
   class { '::redis::sentinel::config': }->
   class { '::redis::sentinel::service': }->
