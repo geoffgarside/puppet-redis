@@ -10,8 +10,13 @@ define redis::sentinel::monitor (
   $notification_script     = $::redis::params::sentinel_notification_script,
   $reconfig_script         = $::redis::params::sentinel_reconfig_script,
 ) {
+  require ::redis::sentinel
+  
+  $conf_local = $::redis::sentinel::config::conf_local
+  
   concat::fragment { "sentinel-monitor-${monitor}":
     content => template('redis/sentinel-monitor.conf.erb'),
+    target  => $conf_local,
     order   => '10',
   }
 }
