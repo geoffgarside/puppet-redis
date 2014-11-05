@@ -34,6 +34,10 @@ class redis::sentinel::config {
     content => template('redis/sentinel.conf.local.erb'),
     order   => '01',
   }
+  
+  if ! empty($::redis::sentinel::monitor) {
+    create_resources('::redis::sentinel::monitor', $::redis::sentinel::monitor)
+  }
 
   $piddir     = dirname($pidfile)
   $logdir     = dirname($logfile)

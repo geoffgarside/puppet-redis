@@ -32,8 +32,4 @@ class redis::sentinel (
   class { '::redis::sentinel::config': }~>
   class { '::redis::sentinel::service': }->
   Class['redis::sentinel']
-
-  if ! empty($monitor) {
-    create_resources('::redis::sentinel::monitor', $monitor)
-  }
 }
