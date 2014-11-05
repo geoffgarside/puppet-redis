@@ -1,5 +1,4 @@
 class redis::sentinel::config {
-  require concat
   require stdlib
 
   $pidfile       = $::redis::params::sentinel_pidfile
