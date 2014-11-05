@@ -128,4 +128,6 @@ class redis::params {
       fail("Your osfamily ${::osfamily} is not currently supported.")
     }
   }
+  
+  $sentinel_conf_local = "${sentinel_conf}.local"
 }

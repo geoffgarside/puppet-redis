@@ -9,7 +9,7 @@ class redis::sentinel::config {
   $announce_ip   = $::redis::sentinel::announce_ip
   $announce_port = $::redis::sentinel::announce_port
   $dir           = $::redis::sentinel::dir
-  $conf_local    = "${::redis::params::sentinel_conf}.local"
+  $conf_local    = $::redis::params::sentinel_conf_local
 
   # Create sentinel.conf which includes sentinel.conf.local
   # Only initialise the file, we will manage the local one.
