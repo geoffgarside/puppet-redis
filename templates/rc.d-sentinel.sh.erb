@@ -26,7 +26,7 @@ pidfile="<%= @sentinel_pidfile %>"
 # read configuration and set defaults
 load_rc_config "$name"
 : ${sentinel_enable="NO"}
-: ${sentinel_user="redis"}
+: ${sentinel_user="<%= @user %>"}
 : ${sentinel_config="<%= @sentinel_conf %>"}
 
 command_args="${sentinel_config} --sentinel"
