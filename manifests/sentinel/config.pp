@@ -9,8 +9,7 @@ class redis::sentinel::config {
   $announce_ip   = $::redis::sentinel::announce_ip
   $announce_port = $::redis::sentinel::announce_port
   $dir           = $::redis::sentinel::dir
-
-  $sentinel_conf_local = $::redis::params::sentinel_conf_local
+  $conf_local    = "${::redis::params::sentinel_conf}.local"
 
   # Create sentinel.conf which includes sentinel.conf.local
   # Only initialise the file, we will manage the local one.
@@ -23,7 +22,7 @@ class redis::sentinel::config {
     replace => false,
   }
 
-  concat { $sentinel_conf_local:
+  concat { $conf_local:
     ensure => $::redis::sentinel::ensure,
     mode   => '0444',
     owner  => 'root',
@@ -31,7 +30,7 @@ class redis::sentinel::config {
   }
 
   concat::fragment { 'sentinel.conf.local':
-    target  => $sentinel_conf_local,
+    target  => $conf_local,
     content => template('redis/sentinel.conf.local.erb'),
     order   => '01',
   }
