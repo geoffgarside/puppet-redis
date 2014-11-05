@@ -14,7 +14,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=<%= @sentinel_redis %>
-DAEMON_ARGS=<%= @sentinel_conf %> --sentinel
+DAEMON_ARGS="<%= @sentinel_conf %> --sentinel"
 NAME=<%= @sentinel_service %>
 DESC=<%= @sentinel_service %>
 
