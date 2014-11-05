@@ -103,6 +103,7 @@ class redis::params {
 
       $sentinel_rc      = '/usr/local/etc/rc.d/sentinel'
       $sentinel_rc_erb  = 'redis/rc.d-sentinel.sh.erb'
+      $sentinel_conf    = '/usr/local/etc/sentinel.conf'
       $sentinel_pidfile = '/var/run/redis/sentinel.pid'
       $sentinel_logfile = '/var/log/redis/sentinel.log'
       $sentinel_service = 'sentinel'
@@ -118,6 +119,7 @@ class redis::params {
       $binary           = '/usr/bin/redis-server'
 
       $sentinel_rc      = false
+      $sentinel_conf    = '/etc/redis/sentinel.conf'
       $sentinel_pidfile = '/var/run/redis/redis-sentinel.pid'
       $sentinel_logfile = '/var/log/redis/redis-sentinel.log'
       $sentinel_service = 'redis-sentinel'
