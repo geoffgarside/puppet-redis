@@ -76,6 +76,8 @@ class redis::params {
 
   $user  = 'redis'
   $group = 'redis'
+  
+  $ulimit = 10032
 
   case $::operatingsystem {
     Ubuntu: {
@@ -118,7 +120,8 @@ class redis::params {
       $shell            = '/bin/false'
       $binary           = '/usr/bin/redis-server'
 
-      $sentinel_rc      = false
+      $sentinel_rc      = '/etc/init.d/redis-sentinel'
+      $sentinel_rc_erb  = 'redis/init.d-redis-sentinel.sh.erb'
       $sentinel_conf    = '/etc/redis/sentinel.conf'
       $sentinel_pidfile = '/var/run/redis/redis-sentinel.pid'
       $sentinel_logfile = '/var/log/redis/redis-sentinel.log'

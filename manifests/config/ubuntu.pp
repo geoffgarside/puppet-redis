@@ -1,5 +1,5 @@
 class redis::config::ubuntu {
-  $ulimit = 10032 # TODO: Move to init.pp, needs to support other platforms though
+  $ulimit = $::redis::params::ulimit # TODO: Move to init.pp, needs to support other platforms though
 
   file { '/etc/default/redis-server':
     ensure  => $::redis::file_ensure,

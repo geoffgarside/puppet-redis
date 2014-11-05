@@ -79,5 +79,17 @@ class redis::sentinel::config {
     owner  => $::redis::user,
     group  => $::redis::group,
   }
+  
+  if $::osfamily == 'Debian' {
+    $ulimit = $::redis::params::ulimit
+
+    file { '/etc/default/redis-sentinel':
+      ensure  => $::redis::file_ensure,
+      content => template('redis/default_redis-sentinel.erb'),
+      mode    => '0644',
+      owner   => 'root',
+      group   => '0',
+    }
+  }
 
 }
