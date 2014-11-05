@@ -126,6 +126,13 @@ class redis::config {
     owner  => $::redis::user,
     group  => $::redis::group,
   }
+  
+  file { $dbdir:
+    ensure => $dir_ensure,
+    mode   => '0755',
+    owner  => $::redis::user,
+    group  => $::redis::group,
+  }
 
   case $::operatingsystem {
     'Ubuntu': {
