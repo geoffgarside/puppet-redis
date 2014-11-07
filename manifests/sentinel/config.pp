@@ -15,9 +15,9 @@ class redis::sentinel::config {
   # Only initialise the file, we will manage the local one.
   # If the config doesn't have our include line, remove it and hope for the best
   exec { "rm -f ${::redis::params::sentinel_conf}":
-    unless => "grep 'include \"${::conf_local}\"' ${::redis::params::sentinel_conf} >/dev/null",
+    unless => "grep 'include \"${conf_local}\"' ${::redis::params::sentinel_conf} >/dev/null",
     path   => ['/bin'],
-  } ->
+  }->
   file { $::redis::params::sentinel_conf:
     ensure  => $::redis::sentinel::file_ensure,
     content => template('redis/sentinel.conf.erb'),
