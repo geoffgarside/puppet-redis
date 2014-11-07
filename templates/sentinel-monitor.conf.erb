@@ -1,3 +1,5 @@
+
+# SENTINEL CONFIG <%= @monitor %>
 sentinel monitor <%= @monitor %> <%= @masterip %> <%= @masterport %> <%= @quorumsize %>
 <% if @masterauth -%>
 sentinel auth-pass <%= @monitor %> <%= @masterauth %>
