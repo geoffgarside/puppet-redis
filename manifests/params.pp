@@ -134,7 +134,7 @@ class redis::params {
       $pidfile          = '/usr/local/var/run/redis.pid'
       $logfile          = undef
       $dbdir            = '/usr/local/var/db/redis/'
-      $shell            = ''
+      $shell            = undef
       $binary           = '/usr/local/bin/redis-server'
 
       $sentinel_rc      = undef
