@@ -76,7 +76,7 @@ class redis::params {
 
   $user  = 'redis'
   $group = 'redis'
-  
+
   $ulimit = 10032
 
   case $::operatingsystem {
@@ -127,10 +127,27 @@ class redis::params {
       $sentinel_logfile = '/var/log/redis/redis-sentinel.log'
       $sentinel_service = 'redis-sentinel'
     }
+    Darwin: {
+      $package_name     = 'redis'
+      $service_name     = 'homebrew.mxcl.redis'
+      $redis_conf       = '/usr/local/etc/redis.conf'
+      $pidfile          = '/usr/local/var/run/redis.pid'
+      $logfile          = ''
+      $dbdir            = '/usr/local/var/db/redis/'
+      $shell            = ''
+      $binary           = '/usr/local/bin/redis-server'
+
+      $sentinel_rc      = undef
+      $sentinel_rc_erb  = undef
+      $sentinel_conf    = '/usr/local/etc/sentinel.conf'
+      $sentinel_pidfile = '/usr/local/var/run/sentinel.pid'
+      $sentinel_logfile = ''
+      $sentinel_service = 'homebrew.mxcl.sentinel'
+    }
     default: {
       fail("Your osfamily ${::osfamily} is not currently supported.")
     }
   }
-  
+
   $sentinel_conf_local = "${sentinel_conf}.local"
 }
