@@ -25,7 +25,7 @@ class redis::service {
       owner  => 'root',
       group  => '0',
       mode   => '0644'
-      source => '/usr/local/opt/redis/${::redis::params::service_name}.plist',
+      source => "/usr/local/opt/redis/${::redis::params::service_name}.plist",
       before => Service['redis'],
       notify => Service['redis'],
     }
