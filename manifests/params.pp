@@ -132,7 +132,7 @@ class redis::params {
       $service_name     = 'homebrew.mxcl.redis'
       $redis_conf       = '/usr/local/etc/redis.conf'
       $pidfile          = '/usr/local/var/run/redis.pid'
-      $logfile          = ''
+      $logfile          = undef
       $dbdir            = '/usr/local/var/db/redis/'
       $shell            = ''
       $binary           = '/usr/local/bin/redis-server'

@@ -94,13 +94,12 @@ class redis::config {
     group   => '0',
   }
 
-  $piddir     = dirname($pidfile)
-  $logdir     = dirname($logfile)
   $dir_ensure = $redis::ensure ? {
     'absent'  => 'absent',
     default   => 'directory',
   }
 
+  $piddir     = dirname($pidfile)
   if $piddir != "/var/run" {
     file { $piddir:
       ensure => $dir_ensure,
@@ -110,23 +109,26 @@ class redis::config {
     }
   }
 
-  if $logdir != "/var/log" {
-    file { $logdir:
-      ensure => $dir_ensure,
-      mode   => '0755',
+  if $logfile {
+    $logdir     = dirname($logfile)
+    if $logdir != "/var/log" {
+      file { $logdir:
+        ensure => $dir_ensure,
+        mode   => '0755',
+        owner  => $::redis::user,
+        group  => $::redis::group,
+        before => File[$logfile],
+      }
+    }
+
+    file { $logfile:
+      ensure => $::redis::file_ensure,
+      mode   => '0660',
       owner  => $::redis::user,
       group  => $::redis::group,
-      before => File[$logfile],
     }
   }
 
-  file { $logfile:
-    ensure => $::redis::file_ensure,
-    mode   => '0660',
-    owner  => $::redis::user,
-    group  => $::redis::group,
-  }
-  
   file { $dbdir:
     ensure => $dir_ensure,
     mode   => '0755',
