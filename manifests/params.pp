@@ -77,6 +77,9 @@ class redis::params {
   $user  = 'redis'
   $group = 'redis'
 
+  $manage_user  = true
+  $manage_group = true
+
   $ulimit = 10032
 
   case $::operatingsystem {

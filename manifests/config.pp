@@ -74,16 +74,20 @@ class redis::config {
   $latency_monitor_supported = $::redis::params::latency_monitor_supported
   $hyperloglog_supported     = $::redis::params::hyperloglog_supported
 
-  user { $::redis::user:
-    ensure  => $::redis::ensure,
-    comment => 'redis server',
-    gid     => $::redis::group,
-    home    => $::redis::dbdir,
-    shell   => $::redis::params::shell,
+  if $::redis::manage_user {
+    user { $::redis::user:
+      ensure  => $::redis::ensure,
+      comment => 'redis server',
+      gid     => $::redis::group,
+      home    => $::redis::dbdir,
+      shell   => $::redis::params::shell,
+    }
   }
 
-  group { $::redis::group:
-    ensure => $::redis::ensure,
+  if $::redis::manage_group {
+    group { $::redis::group:
+      ensure => $::redis::ensure,
+    }
   }
 
   file { $::redis::params::redis_conf:

@@ -65,6 +65,8 @@ class redis (
   $aof_rewrite_incremental_fsync     = $::redis::params::aof_rewrite_incremental_fsync,
   $user                              = $::redis::params::user,
   $group                             = $::redis::params::group,
+  $manage_user                       = $::redis::params::manage_user,
+  $manage_group                      = $::redis::params::manage_group,
 ) inherits redis::params {
 
   $file_ensure = $ensure ? {
