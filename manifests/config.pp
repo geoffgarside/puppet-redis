@@ -1,7 +1,7 @@
 class redis::config {
   require stdlib
 
-  if ! has_ip_address($::redis::slaveof_ip) {
+  if $::redis::slaveof_ip and ! has_ip_address($::redis::slaveof_ip) {
     $slaveof = "${::redis::slaveof_ip} ${::redis::slaveof_port}"
   } else {
     $slaveof = undef
